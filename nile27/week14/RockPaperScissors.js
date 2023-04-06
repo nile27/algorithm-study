@@ -8,20 +8,22 @@ function rockPaperScissors (n = 3) {
 
   let arr = ["rock", "paper", "scissors"]
   
-  let result = [];
+  let ans = [];
 
-  function dfs(count, arr, stack) {
+  function dfs(count, arr, res) {
+    let result = [...res]
     if (count === 0) {
-      result.push(stack)
+      ans.push(res)
       return
     }
 
     for (let i = 0; i < arr.length; i++) {
-      let pick = arr[i]
-      dfs(count - 1, arr, stack.concat(pick))
+      result.push(arr[i])
+      dfs(count - 1, arr,result )
+      result = [...res]
     }
   }
 
   dfs(n, arr, [])
-  return result
+  return ans
 };
